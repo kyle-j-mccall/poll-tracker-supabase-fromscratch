@@ -40,31 +40,36 @@ pollForm.addEventListener('submit', (e) => {
     console.log(currentPoll);
 
     pollForm.reset();
-    console.log(currentPoll);
+    
+    displayCurrentPoll();
 
 });
 
 optionAButton.addEventListener('click', () => {
     votesA++;
     currentPoll.votesA = votesA;
+    displayCurrentPoll();
     console.log(currentPoll);
 });
 
 optionBButon.addEventListener('click', () => {
     votesB++;
     currentPoll.votesB = votesB;
+    displayCurrentPoll();
     console.log(currentPoll);
 });
 
 subtractA.addEventListener('click', () => {
     votesA--;
     currentPoll.votesA = votesA;
+    displayCurrentPoll();
     console.log(currentPoll);
 });
 
 subtractB.addEventListener('click', () => {
     votesB--;
     currentPoll.votesB = votesB;
+    displayCurrentPoll();
     console.log(currentPoll);
 });
 
@@ -72,7 +77,9 @@ subtractB.addEventListener('click', () => {
 
 
 function displayCurrentPoll() {
-    // const renderedPoll = renderPoll
+    currentPollEl.textContent = '';
+    const renderedPoll = renderPoll(currentPoll);
+    currentPollEl.append(renderedPoll);
 }
 
 async function displayAllPolls() {
