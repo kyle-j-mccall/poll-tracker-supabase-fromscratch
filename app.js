@@ -21,5 +21,7 @@ pollForm.addEventListener('submit', (e) => {
     optionB = data.get('option-b');
 
     console.log(question, optionA, optionB);
-    
+
+    pollForm.reset();
+
 });
