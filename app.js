@@ -1,5 +1,5 @@
 const pollForm = document.getElementById('poll-form');
-const optionAButon = document.getElementById('option-a-button');
+const optionAButton = document.getElementById('option-a-button');
 const optionBButon = document.getElementById('option-b-button');
 const subtractA = document.getElementById('subtract-a-button');
 const subtractB = document.getElementById('subtract-b-button');
@@ -24,4 +24,24 @@ pollForm.addEventListener('submit', (e) => {
 
     pollForm.reset();
 
+});
+
+optionAButton.addEventListener('click', () => {
+    votesA++;
+    console.log(votesA);
+});
+
+optionBButon.addEventListener('click', () => {
+    votesB++;
+    console.log(votesB);
+});
+
+subtractA.addEventListener('click', () => {
+    votesA--;
+    console.log(votesB);
+});
+
+subtractB.addEventListener('click', () => {
+    votesB--;
+    console.log(votesB);
 });
