@@ -1,4 +1,5 @@
 import { renderPoll } from './render-utils.js';
+import { createPoll, getPolls } from './fetch-utils.js';
 
 const pollForm = document.getElementById('poll-form');
 const optionAButton = document.getElementById('option-a-button');
@@ -10,18 +11,18 @@ const submitPollButton = document.getElementById('submit-poll-button');
 const currentPollEl = document.getElementById('current-poll-section');
 const pastPollEl = document.getElementById('past-poll-container');
 
-let question = '';
-let optionA = '';
-let optionB = '';
-let votesA = 0;
-let votesB = 0;
+// let question = '';
+// let optionA = '';
+// let optionB = '';
+// let votesA = 0;
+// let votesB = 0;
 
 const currentPoll = {
     question: '',
     optionA: '',
     optionB: '',
     votesA: 0,
-    votesB: votesB
+    votesB: 0
 };
 
 pollForm.addEventListener('submit', (e) => {
@@ -29,15 +30,15 @@ pollForm.addEventListener('submit', (e) => {
 
     const data = new FormData(pollForm);
 
-    question = data.get('question');
-    optionA = data.get('option-a');
-    optionB = data.get('option-b');
+    currentPoll.question = data.get('question');
+    currentPoll.optionA = data.get('option-a');
+    currentPoll.optionB = data.get('option-b');
 
-    currentPoll.question = question;
-    currentPoll.optionA = optionA;
-    currentPoll.optionB = optionB;
+    // currentPoll.question = question;
+    // currentPoll.optionA = optionA;
+    // currentPoll.optionB = optionB;
 
-    console.log(currentPoll);
+    
 
     pollForm.reset();
     
@@ -46,31 +47,46 @@ pollForm.addEventListener('submit', (e) => {
 });
 
 optionAButton.addEventListener('click', () => {
-    votesA++;
-    currentPoll.votesA = votesA;
+    
+    currentPoll.votesA++;
     displayCurrentPoll();
-    console.log(currentPoll);
+    
 });
 
 optionBButon.addEventListener('click', () => {
-    votesB++;
-    currentPoll.votesB = votesB;
+    
+    currentPoll.votesB++;
     displayCurrentPoll();
-    console.log(currentPoll);
+    
 });
 
 subtractA.addEventListener('click', () => {
-    votesA--;
-    currentPoll.votesA = votesA;
+    
+    currentPoll.votesA--;
     displayCurrentPoll();
-    console.log(currentPoll);
+    
 });
 
 subtractB.addEventListener('click', () => {
-    votesB--;
-    currentPoll.votesB = votesB;
+    
+    currentPoll.votesB--;
     displayCurrentPoll();
-    console.log(currentPoll);
+    
+});
+
+submitPollButton.addEventListener('click', async () => {
+    
+
+    await createPoll(currentPoll);
+
+    currentPoll.question = '';
+    currentPoll.optionA = '';
+    currentPoll.optionB = '';
+    currentPoll.votesA = 0;
+    currentPoll.votesB = 0;
+
+    displayAllPolls();
+
 });
 
 
@@ -83,5 +99,12 @@ function displayCurrentPoll() {
 }
 
 async function displayAllPolls() {
+    pastPollEl.textContent = '';
 
+    const allPolls = await getPolls();
+
+    for (let poll of allPolls) {
+        const renderedPoll = renderPoll(poll);
+        pastPollEl.append(renderedPoll);
+    }
 }
