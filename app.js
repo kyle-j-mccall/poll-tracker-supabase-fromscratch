@@ -87,6 +87,8 @@ submitPollButton.addEventListener('click', async () => {
 
     displayAllPolls();
 
+    currentPollEl.textContent = '';
+
 });
 
 
@@ -108,3 +110,5 @@ async function displayAllPolls() {
         pastPollEl.append(renderedPoll);
     }
 }
+
+displayAllPolls();
