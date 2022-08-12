@@ -7,27 +7,80 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="icon" type="image/x-icon" href="/assets/alchemy-favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap">
+        <link href="https://fonts.googleapis.com/css2?family=Diplomata+SC&family=Goldman&family=Lobster&family=Rubik+Dirt&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Diplomata+SC&family=Goldman&family=Lobster&family=Playfair+Display&family=Rubik+Dirt&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/global.css" />
-    <title>Web App</title>
+    <title>Poll Tracker</title>
 </head>
 
 <body>
+    
     <header>
-        <img src="/assets/html_css_js.png">
-        <h1>Web App</h1>
+        <h1>Poll Tracker</h1>
     </header>
-
     <main>
+        <h3>Current Poll</h3>
+        <section id="current-poll-section" class="current-poll">
+            
+            
+        </section>
+        <section class="vote-buttons">
+            <button id="option-a-button">vote option A</button>
+            <button id="option-b-button">vote option B</button>
+            <button id="submit-poll-button">submit poll</button>
+        </section>
+        <section class="vote-buttons">
+            <button id="subtract-a-button">subtract vote A</button>
+            <button id="subtract-b-button">subtract vote B</button>
+           
+        </section>
+        <section class="input-section">
+            <form id="poll-form">
+                <h3>Create A Poll</h3>
+                <div>
+                    <label>
+                        Question:
+                        <input id="question-input" name="question">
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Option A:
+                        <input id="option-a-input" name="option-a">
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Option B:
+                        <input id="option-b-input" name="option-b">
+                    </label>
+                </div>
+                <button id="create-poll-button">Create poll</button>
+            </form>
+        </section>
+    
+        <section class="past-poll-section">
+            <h3>
+                Past Polls
+            </h3>
+            <div id="past-poll-container">
 
+            </div>
+        </section>
     </main>
+    
 
-    <footer>&copy;2022 Software Developer</footer>
+   
 
-    <script type="module" src="app.js"></script>
+    
+
+    
 </body>
+<script type="module" src="app.js"></script>
 
 </html>
